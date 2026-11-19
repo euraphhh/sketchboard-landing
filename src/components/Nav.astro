@@ -1,0 +1,19 @@
+---
+import AppTile from "./AppTile.astro";
+import { APP_REPO_URL } from "../lib/release";
+---
+
+<header class="nav">
+  <div class="wrap">
+    <a class="lockup" href="#top" aria-label="Sketchboard, início">
+      <AppTile size="30px" />
+      Sketchboard
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a class="hide-sm" href="#como-funciona">Como funciona</a>
+      <a class="hide-sm" href="#recursos">Recursos</a>
+      <a href={APP_REPO_URL} target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-cta" href="#download">Baixar</a>
+    </nav>
+  </div>
+</header>

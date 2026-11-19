@@ -1,0 +1,27 @@
+---
+const features = [
+  { body: "Separe telas, testes e rascunhos sem misturar a lousa.", eyebrow: "Workflows", title: "Um quadro para cada ideia" },
+  { body: "A conta feita à mão vira sugestão de resultado.", demo: "12 × 4 = 48", eyebrow: "Contas", title: "Escreva, ele resolve" },
+  { body: "Imagens entram no quadro e podem ser movidas e redimensionadas.", eyebrow: "Imagens", title: "Cole e arraste" },
+  { body: "Autosave local e backup em um arquivo .sketchboard.json. Sem conta, sem nuvem.", eyebrow: "Local", title: "Salvo no seu computador" }
+];
+---
+
+<section class="block" id="recursos">
+  <div class="wrap">
+    <div data-reveal class="eyebrow">Recursos</div>
+    <h2 data-reveal style="--i:1">Só o que precisa para pensar no quadro.</h2>
+    <div class="features">
+      {
+        features.map((feature, index) => (
+          <div class="feat" data-reveal style={`--i:${index}`}>
+            <div class="eyebrow">{feature.eyebrow}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+            {feature.demo && <span class="demo">{feature.demo}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

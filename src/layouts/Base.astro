@@ -1,0 +1,53 @@
+---
+import "@fontsource-variable/inter-tight";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/global.css";
+
+interface Props {
+  description?: string;
+  title?: string;
+}
+
+const {
+  description = "Sketchboard é um quadro branco leve e open source para desenhar, escrever, colar imagens e organizar ideias em workflows. Grátis para macOS, Windows e Linux.",
+  title = "Sketchboard: o quadro para rabiscar ideias"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add("js");</script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Reveal static sections on scroll. React islands animate themselves with Motion.
+      const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+      );
+      items.forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>

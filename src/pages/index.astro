@@ -1,0 +1,51 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Features from "../components/Features.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero";
+import LiveDemo from "../components/LiveDemo";
+import DrawIcon from "../components/DrawIcon";
+import Downloads from "../components/Downloads";
+import ScrollProgress from "../components/ScrollProgress";
+import { getLatestRelease } from "../lib/release";
+
+const release = await getLatestRelease();
+---
+
+<Base>
+  <ScrollProgress client:load />
+  <Nav />
+  <main id="top">
+    <Hero client:load release={release} />
+
+    <section class="block" id="como-funciona">
+      <div class="wrap">
+        <div data-reveal class="eyebrow">Como funciona</div>
+        <h2 data-reveal style="--i:1">Escreva a conta. Ele sugere o resultado.</h2>
+        <p data-reveal class="lead" style="--i:2">
+          Painéis discretos, ferramentas no canto e o quadro inteiro livre para você. Quando reconhece uma conta, o
+          Sketchboard oferece o resultado e você insere com um clique.
+        </p>
+        <LiveDemo client:visible />
+      </div>
+    </section>
+
+    <Features />
+
+    <section class="block" id="download">
+      <div class="wrap">
+        <div class="dl-head">
+          <DrawIcon client:visible size="min(160px, 40vw)" />
+          <div>
+            <div data-reveal class="eyebrow">Download</div>
+            <h2 data-reveal style="--i:1">Baixe o Sketchboard.</h2>
+            <p data-reveal class="lead" style="--i:2">Grátis, sem conta e com código aberto.</p>
+          </div>
+        </div>
+        <Downloads client:load release={release} />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
